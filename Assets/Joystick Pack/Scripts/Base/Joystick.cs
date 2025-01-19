@@ -40,6 +40,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    // Add for tab detection
+    public delegate void OnStickTap();
+    public event OnStickTap StickTapped;
+    private bool isDragging = false;
+
     protected virtual void Start()
     {
         HandleRange = handleRange;
@@ -59,11 +64,13 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        OnDrag(eventData);
+        OnDrag(eventData); // Process drag on pointer down
+        isDragging = false; // Reset dragging flag
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        isDragging = true; // Mark as dragging
         cam = null;
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
             cam = canvas.worldCamera;
@@ -129,10 +136,17 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         return 0;
     }
 
+
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+
+        // Trigger tap event if it wasn't a drag
+        if (!isDragging)
+        {
+            StickTapped?.Invoke();
+        }
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
