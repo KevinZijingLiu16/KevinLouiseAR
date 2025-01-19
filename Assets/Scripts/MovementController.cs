@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +12,19 @@ public class MovementController : MonoBehaviour
 
     public float maxVelocityChange = 10f;
 
+    public float jumpForce = 5f;
+    private bool isGrounded = true; // 检测是否在地面上
+
+    public float tiltAmount = 4f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        if (joystick != null)
+        {
+            joystick.StickTapped += OnJoystickTapped;
+        }
     }
 
     private void Update()
@@ -25,17 +34,27 @@ public class MovementController : MonoBehaviour
 
         // Move the player
         Move(movementVelocityVector);
-    }
 
+        // tilt the player, based on the joystick input aka movement direction.
+        transform.rotation = Quaternion.Euler(joystick.Vertical * speed * tiltAmount, 0, joystick.Horizontal * speed * tiltAmount * -1);
+    }
+    private void FixedUpdate()
+    {
+        if (velocityVector != Vector3.zero)
+        {
+            ApplyVelocityChange(velocityVector);
+        }
+
+       
+    }
     private void Move(Vector3 movementVelocityVector)
     {
         velocityVector = movementVelocityVector;
-
     }
+
     private Vector3 CalculateMovementVelocity()
     {
         // Get the movement input from the joystick
-        // When the input is less than 0.1f, set it to 0 to avoid miss touch
         float xMovement = Mathf.Abs(joystick.Horizontal) > 0.1f ? joystick.Horizontal : 0f;
         float yMovement = Mathf.Abs(joystick.Vertical) > 0.1f ? joystick.Vertical : 0f;
 
@@ -47,22 +66,50 @@ public class MovementController : MonoBehaviour
         return (movementHorizontal + movementVertical).normalized * speed;
     }
 
+    
 
-
-    private void FixedUpdate()
+    private void ApplyVelocityChange(Vector3 targetVelocity)
     {
-        if (velocityVector != Vector3.zero)
+        // get the current velocity
+        Vector3 velocity = rb.velocity;
+
+        // calculate the velocity change
+        Vector3 velocityChange = (targetVelocity - velocity);
+
+        // limit the velocity change to maxVelocityChange
+        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+        velocityChange.y = 0; // 不改变 Y 轴速度（防止物体飞起）
+
+        // apply the velocity change
+        rb.AddForce(velocityChange, ForceMode.Acceleration);
+    }
+
+    private void OnJoystickTapped()
+    {
+        // 检查是否在地面上
+        if (isGrounded)
         {
-            //Get rigidbody's current velocity
-            Vector3 velocity = rb.velocity;
-            Vector3 velocityChange = (velocityVector - velocity);
-            //add a force by the amount of velocity change to reach the target velocity
-            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-            velocityChange.y = 0;
-            rb.AddForce(velocityChange, ForceMode.Acceleration);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false; // 标记为非地面状态
+        }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        // 检测是否回到地面
+        if (collision.contacts.Length > 0 && collision.contacts[0].point.y <= transform.position.y)
+        {
+            isGrounded = true;
+        }
+    }
 
+    private void OnDestroy()
+    {
+        // 取消订阅事件
+        if (joystick != null)
+        {
+            joystick.StickTapped -= OnJoystickTapped;
         }
     }
 }

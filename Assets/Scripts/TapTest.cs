@@ -8,17 +8,17 @@ public class TapTest : MonoBehaviour
 
     private void Start()
     {
-        joystick.StickTapped += OnJoystickTapped; // 订阅事件
+        joystick.StickTapped += OnJoystickTapped; // subscribe to the event
     }
 
     private void OnJoystickTapped()
     {
         Debug.Log("Joystick tapped! ");
-        // 在这里实现发射逻辑
+        // tap logic here
     }
 
     private void OnDestroy()
     {
-        joystick.StickTapped -= OnJoystickTapped; // 取消订阅事件，防止内存泄漏
+        joystick.StickTapped -= OnJoystickTapped; // unsbscribe from the event
     }
 }
