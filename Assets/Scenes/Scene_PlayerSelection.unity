@@ -2879,6 +2879,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955095337}
     m_Modifications:
+    - target: {fileID: 1591640666488564819, guid: f19d6ba5e6a078f44891bc6dbe03b3aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4cd95e8bb7fa5249baa7f25d67d58a6, type: 2}
+    - target: {fileID: 2102987317179389008, guid: f19d6ba5e6a078f44891bc6dbe03b3aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4cd95e8bb7fa5249baa7f25d67d58a6, type: 2}
+    - target: {fileID: 2566090401022826965, guid: f19d6ba5e6a078f44891bc6dbe03b3aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4cd95e8bb7fa5249baa7f25d67d58a6, type: 2}
     - target: {fileID: 4894918156850895201, guid: f19d6ba5e6a078f44891bc6dbe03b3aa, type: 3}
       propertyPath: m_Name
       value: Spinner_Defender_02
@@ -3566,10 +3578,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 174618835}
     m_Modifications:
     - target: {fileID: 5460060014496966279, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5460060014496966279, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3855,7 +3863,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.7466693, b: 0.28773582, a: 1}
+  m_Color: {r: 0.3490566, g: 0.32141903, b: 0.2716714, a: 1}
   m_Intensity: 20
   m_Range: 21.6
   m_SpotAngle: 55.7

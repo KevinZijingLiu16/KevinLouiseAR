@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -45,6 +46,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region UI Callback Methods
+
+
+    public void OnQuickMatchButtonClicked()
+    {
+        // SceneManager.LoadScene("Scene_Loading");
+        SceneLoader.Instance.LoadScene("Scene_PlayerSelection");
+    }
 
     public void OnEnterGameButtonClicked()
     {
