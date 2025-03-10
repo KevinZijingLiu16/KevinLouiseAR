@@ -2440,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player4_Defender
       objectReference: {fileID: 0}
+    - target: {fileID: 4663518797756989780, guid: 0075b5b227e2c5d4da8babe893492b5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4663518797756989783, guid: 0075b5b227e2c5d4da8babe893492b5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.49017912
@@ -2680,6 +2684,10 @@ PrefabInstance:
     - target: {fileID: 1802076417471478439, guid: 35665747fae2c984da63fdefa6af5705, type: 3}
       propertyPath: m_Name
       value: Player2_Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802076417471478439, guid: 35665747fae2c984da63fdefa6af5705, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5114831928005198817, guid: 35665747fae2c984da63fdefa6af5705, type: 3}
       propertyPath: sceneViewId
