@@ -44,4 +44,39 @@ public class PlayerSetup : MonoBehaviourPun
             playerNameText.color = Color.red;
         }
     }
+    /*
+    public GameObject dragon;  
+
+    void Update()
+    {
+       
+        if (photonView.IsMine && Input.GetMouseButtonDown(0))
+        {
+           
+            photonView.RPC("ShowDragon", RpcTarget.All);
+           
+        }
+    }
+
+    [PunRPC]
+    void ShowDragon()
+    {
+        if (dragon != null)
+        {
+            dragon.SetActive(true);
+            StartCoroutine(HideDragonAfterDelay(2f));
+        }
+
+        
+    }
+    IEnumerator HideDragonAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (dragon != null)
+        {
+            dragon.SetActive(false);
+        }
+    }
+
+    */
 }

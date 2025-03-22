@@ -13,7 +13,7 @@ public class MovementController : MonoBehaviour
     public float maxVelocityChange = 10f;
 
     public float jumpForce = 5f;
-    private bool isGrounded = true; // 检测是否在地面上
+    private bool isGrounded = true; 
 
     public float tiltAmount = 4f;
 
