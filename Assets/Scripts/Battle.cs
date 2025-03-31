@@ -111,6 +111,12 @@ public class Battle : MonoBehaviourPun
             if (isAttacker)
             {
                 _damageAmount *= getDamage_coefficient_Attacker;
+
+                if (_damageAmount > 1000)
+                {
+                    _damageAmount = 400;
+                }
+
             }
             else if (isDefender)
             {
