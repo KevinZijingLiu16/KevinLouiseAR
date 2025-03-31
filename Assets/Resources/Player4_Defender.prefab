@@ -599,8 +599,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeedBarImage: {fileID: 4663518798249398227}
+  uI_3D_GameObject: {fileID: 4663518798063194202}
+  deathPanelUIPrefab: {fileID: 3593783272886976281, guid: 0367e5d2c0c49da4b80c7fe1c169056c, type: 3}
   spinnerScript: {fileID: 8558443149313216467}
   spinSpeedRatioText: {fileID: 6403045122420741532}
+  common_damage_coifficient: 0.04
+  isAttacker: 0
+  isDefender: 0
+  doDamage_coefficient_Attacker: 10
+  getDamage_coefficient_Attacker: 1.2
+  doDamage_coefficient_Defender: 0.75
+  getDamage_coefficient_Defender: 0.2
 --- !u!1 &4663518798063194202
 GameObject:
   m_ObjectHideFlags: 0

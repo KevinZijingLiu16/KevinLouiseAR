@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 2523371896480695254}
-  dragon: {fileID: 5270530598214221900}
 --- !u!114 &5986699326617691344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,8 +390,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeedBarImage: {fileID: 2523371896873197419}
+  uI_3D_GameObject: {fileID: 2523371896678793442}
+  deathPanelUIPrefab: {fileID: 3593783272886976281, guid: 0367e5d2c0c49da4b80c7fe1c169056c, type: 3}
   spinnerScript: {fileID: 9185908771336678397}
   spinSpeedRatioText: {fileID: 4278660854099477796}
+  common_damage_coifficient: 0.04
+  isAttacker: 0
+  isDefender: 0
+  doDamage_coefficient_Attacker: 10
+  getDamage_coefficient_Attacker: 1.2
+  doDamage_coefficient_Defender: 0.75
+  getDamage_coefficient_Defender: 0.2
 --- !u!1 &2523371896480695252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,11 +1041,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73629036495062749b5af4505f62c711, type: 3}
---- !u!1 &5270530598214221900 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6970510263878813653, guid: 73629036495062749b5af4505f62c711, type: 3}
-  m_PrefabInstance: {fileID: 2997309932255365017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5270530598214410622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6970510263878510311, guid: 73629036495062749b5af4505f62c711, type: 3}
