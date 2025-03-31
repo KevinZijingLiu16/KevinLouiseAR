@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 360
+  spinSpeed: 600
   doSpin: 1
   playerGraphics: {fileID: 748602587}
 --- !u!1 &213413509
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 360
+  spinSpeed: 600
   doSpin: 1
   playerGraphics: {fileID: 1904080305}
 --- !u!1 &935248130
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 360
+  spinSpeed: 600
   doSpin: 1
   playerGraphics: {fileID: 760643466}
 --- !u!1 &1017666829
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 360
+  spinSpeed: 600
   doSpin: 1
   playerGraphics: {fileID: 2126800174}
 --- !u!1 &1571653638

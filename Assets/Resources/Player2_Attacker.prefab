@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 3600
+  spinSpeed: 3600
   doSpin: 1
   playerGraphics: {fileID: 1802076418753269999}
 --- !u!114 &5114831928005198817
@@ -807,6 +807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c02aa95494470d4abb3b32171c85ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinSpeedBarImage: {fileID: 1802076416973763616}
+  spinnerScript: {fileID: 3880166066059755440}
+  spinSpeedRatioText: {fileID: 100848075634437743}
 --- !u!1 &1802076418753269999
 GameObject:
   m_ObjectHideFlags: 0

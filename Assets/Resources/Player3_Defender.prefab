@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 3600
+  spinSpeed: 3600
   doSpin: 1
   playerGraphics: {fileID: 2269595061132471730}
 --- !u!114 &6043917983081079376
@@ -593,7 +593,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -395424507861856106}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -638,6 +639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c02aa95494470d4abb3b32171c85ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinSpeedBarImage: {fileID: 2269595059424446845}
+  spinnerScript: {fileID: 8410420416540964038}
+  spinSpeedRatioText: {fileID: 512058580104729394}
 --- !u!1 &2269595060150874238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,8 +1129,56 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2269595061132471729}
     m_Modifications:
+    - target: {fileID: 73677106, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 73677106, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455728726, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 455728726, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035782795, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035782795, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119026438, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119026438, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1174546705, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707913459, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707913459, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022357884, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.94731724
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022357884, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5460060014496966279, guid: ea3ce06db6111ae41b784405dd49f18b, type: 3}

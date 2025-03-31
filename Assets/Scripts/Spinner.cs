@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
-    public float spinSpped = 3600f;
+    public float spinSpeed = 3600f;
     public bool doSpin = false;
 
     private Rigidbody rb;
@@ -15,7 +15,7 @@ public class Spinner : MonoBehaviour
     {
         if (doSpin)
         {
-            playerGraphics.transform.Rotate(new Vector3(0, spinSpped * Time.deltaTime, 0));
+            playerGraphics.transform.Rotate(new Vector3(0, spinSpeed * Time.deltaTime, 0));
         }
     }
 }

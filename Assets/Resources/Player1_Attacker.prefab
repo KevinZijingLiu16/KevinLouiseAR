@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ee630855a9fb45a2dba606306730f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpped: 3600
+  spinSpeed: 3600
   doSpin: 1
   playerGraphics: {fileID: 2523371895095917476}
 --- !u!114 &-7821910303017956128
@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 2523371896480695254}
+  dragon: {fileID: 5270530598214221900}
 --- !u!114 &5986699326617691344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c02aa95494470d4abb3b32171c85ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinSpeedBarImage: {fileID: 2523371896873197419}
+  spinnerScript: {fileID: 9185908771336678397}
+  spinSpeedRatioText: {fileID: 4278660854099477796}
 --- !u!1 &2523371896480695252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1033,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73629036495062749b5af4505f62c711, type: 3}
+--- !u!1 &5270530598214221900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6970510263878813653, guid: 73629036495062749b5af4505f62c711, type: 3}
+  m_PrefabInstance: {fileID: 2997309932255365017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5270530598214410622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6970510263878510311, guid: 73629036495062749b5af4505f62c711, type: 3}
