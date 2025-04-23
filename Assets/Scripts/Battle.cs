@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
-using UnityEngine.Rendering;
 
 public class Battle : MonoBehaviourPun
 {
@@ -33,15 +31,13 @@ public class Battle : MonoBehaviourPun
     public float doDamage_coefficient_Defender = 0.75f;
     public float getDamage_coefficient_Defender = 0.2f;
 
-
     private void Awake()
     {
         startSpinSpeed = spinnerScript.spinSpeed;
         currentSpeed = spinnerScript.spinSpeed;
 
         spinSpeedBarImage.fillAmount = currentSpeed / startSpinSpeed;
-        spinSpeedRatioText.text = currentSpeed.ToString();
-
+        spinSpeedRatioText.text = currentSpeed.ToString("F0");
     }
 
     private void CheckPlayerType()
@@ -67,79 +63,53 @@ public class Battle : MonoBehaviourPun
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Compare the speed of 2 players, the one with the higher speed wins
-            float mySpeed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-
+            float mySpeed = rb.velocity.magnitude;
             float opponentSpeed = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-
-            // Debug.Log("My Speed: " + mySpeed + " Opponent Speed: " + opponentSpeed);
 
             if (mySpeed > opponentSpeed)
             {
-                Debug.Log("I Win");
+                float damage = mySpeed * 3600 * common_damage_coifficient;
 
-                float defaultDamageAmount = gameObject.GetComponent<Rigidbody>().velocity.magnitude * 3600 * common_damage_coifficient;
                 if (isAttacker)
-                {
-                    defaultDamageAmount *= doDamage_coefficient_Attacker;
-                }
+                    damage *= doDamage_coefficient_Attacker;
                 else if (isDefender)
+                    damage *= doDamage_coefficient_Defender;
+
+                if (collision.collider.gameObject.GetComponent<PhotonView>().IsMine)
                 {
-                    defaultDamageAmount *= doDamage_coefficient_Defender;
-
+                    collision.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, damage);
                 }
-
-
-                if (collision.collider.gameObject.GetComponent<PhotonView>().IsMine) //make sure it is local player to avoid multiple RPC
-                {
-
-                    collision.collider.gameObject.GetComponent<PhotonView>().RPC("DoDamage", RpcTarget.AllBuffered, defaultDamageAmount);
-                }
-
             }
-
-
         }
     }
 
     [PunRPC]
-
     public void DoDamage(float _damageAmount)
     {
-        if (!isDead)
+        if (isDead) return;
+
+        if (isAttacker)
         {
-            if (isAttacker)
-            {
-                _damageAmount *= getDamage_coefficient_Attacker;
-
-                if (_damageAmount > 1000)
-                {
-                    _damageAmount = 400;
-                }
-
-            }
-            else if (isDefender)
-            {
-                _damageAmount *= getDamage_coefficient_Defender;
-            }
-
-            Debug.Log("Damage Done");
-
-            spinnerScript.spinSpeed -= _damageAmount;
-            currentSpeed = spinnerScript.spinSpeed;
-
-            spinSpeedBarImage.fillAmount = currentSpeed / startSpinSpeed;
-
-            spinSpeedRatioText.text = currentSpeed.ToString("F0");
-
-            if (currentSpeed <= 0)
-            {
-                Die();
-                Debug.Log("Player die");
-            }
+            _damageAmount *= getDamage_coefficient_Attacker;
+            if (_damageAmount > 1000) _damageAmount = 400;
+        }
+        else if (isDefender)
+        {
+            _damageAmount *= getDamage_coefficient_Defender;
         }
 
+        spinnerScript.spinSpeed -= _damageAmount;
+        currentSpeed = spinnerScript.spinSpeed;
 
+        spinSpeedBarImage.fillAmount = currentSpeed / startSpinSpeed;
+        spinSpeedRatioText.text = currentSpeed.ToString("F0");
+
+        if (currentSpeed <= 0)
+        {
+            Die();
+        }
+        // 同步当前转速到所有客户端（用于显示敌方血量）
+        photonView.RPC("SyncSpinSpeed", RpcTarget.Others, spinnerScript.spinSpeed);
 
     }
 
@@ -157,20 +127,16 @@ public class Battle : MonoBehaviourPun
         if (photonView.IsMine)
         {
             StartCoroutine(Respawn());
-            Debug.Log("Player respawn");
         }
-
-
     }
 
     IEnumerator Respawn()
     {
-        GameObject canvasGameObject = GameObject.Find("Canvas");
-
+        GameObject canvas = GameObject.Find("Canvas");
 
         if (deathPanelUIGameObject == null)
         {
-            deathPanelUIGameObject = Instantiate(deathPanelUIPrefab, canvasGameObject.transform);
+            deathPanelUIGameObject = Instantiate(deathPanelUIPrefab, canvas.transform);
         }
         else
         {
@@ -178,26 +144,19 @@ public class Battle : MonoBehaviourPun
         }
 
         Text respawnTimeText = deathPanelUIGameObject.transform.Find("RespawnTimeText").GetComponent<Text>();
-
         float respawnTime = 5f;
-
-
-       
 
         while (respawnTime > 0)
         {
             respawnTimeText.text = respawnTime.ToString("F0");
             yield return new WaitForSeconds(1f);
-            respawnTime -= 1f;
-            GetComponent<MovementController>().enabled = false;
+            respawnTime--;
         }
 
         deathPanelUIGameObject.SetActive(false);
         GetComponent<MovementController>().enabled = true;
 
         photonView.RPC("Revive", RpcTarget.AllBuffered);
-
-
     }
 
     [PunRPC]
@@ -205,29 +164,29 @@ public class Battle : MonoBehaviourPun
     {
         spinnerScript.spinSpeed = startSpinSpeed;
         currentSpeed = spinnerScript.spinSpeed;
+
         spinSpeedBarImage.fillAmount = currentSpeed / startSpinSpeed;
         spinSpeedRatioText.text = currentSpeed.ToString("F0");
-        uI_3D_GameObject.SetActive(true);
 
+        uI_3D_GameObject.SetActive(true);
         rb.freezeRotation = true;
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
         isDead = false;
     }
 
+    [PunRPC]
+    public void SyncSpinSpeed(float syncedSpeed)
+    {
+        currentSpeed = syncedSpeed;
+        spinSpeedBarImage.fillAmount = currentSpeed / startSpinSpeed;
+        spinSpeedRatioText.text = currentSpeed.ToString("F0");
+    }
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         CheckPlayerType();
         rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
