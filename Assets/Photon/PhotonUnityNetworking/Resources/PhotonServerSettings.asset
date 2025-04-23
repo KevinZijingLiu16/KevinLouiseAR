@@ -42,6 +42,10 @@ MonoBehaviour:
   - ShowDragon
   - DoDamage
   - Revive
+  - SummonDragon
+  - RequestOrbCollected
+  - SetDragonActive
+  - SyncSpinSpeed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
